@@ -2,12 +2,13 @@
  * Created by halversondm on 1/21/17.
  */
 
-var HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     entry: "./src/main.tsx",
     output: {
-        filename: "typescript-react-webpack.js",
+        filename: "[name]-[hash].js",
         path: __dirname + "/target"
     },
 
@@ -17,6 +18,7 @@ module.exports = {
             inject: "body",
             filename: "index.html"
         }),
+        new ExtractTextPlugin("[name]-[hash].min.css")
     ],
 
     // Enable sourcemaps for debugging webpack's output.
@@ -30,7 +32,8 @@ module.exports = {
     module: {
         loaders: [
             // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" }
+            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+            { test: /\.css$/, loader: ExtractTextPlugin.extract("style", "css")}
         ],
 
         preLoaders: [
