@@ -1,44 +1,50 @@
 "use strict";
 
 import * as React from "react";
+import {connect} from "react-redux";
+import {HeroState} from "../reducers/index";
+import {HeroList} from "./HeroList";
+import {HeroDetail} from "./HeroDetail";
+import * as HeroActions from "../actions";
+import Hero from "./Hero";
+import {bindActionCreators} from "redux";
 
-class Hero {
-    id: number;
-    name: string;
+interface StateProps {
+    heroState: HeroState
 }
 
-export default class TourOfHeroes extends React.Component<{}, Hero> {
+interface DispatchProps {
+    updateName(hero: Hero): void;
+    setSelected(hero: Hero): void;
+}
 
-    state: Hero;
+type TourOfHeroesProps = StateProps & DispatchProps;
+
+function mapStateToProps(state: HeroState) {
+    return {heroState: state};
+}
+
+function mapDispatchToProps(dispatch: any) {
+    return bindActionCreators(HeroActions, dispatch);
+}
+class TourOfHeroes extends React.Component<TourOfHeroesProps, any> {
 
     constructor() {
         super();
-        this.state = {id: 1, name: "Windstorm"};
-        this.nameChange = this.nameChange.bind(this);
-    }
-
-    nameChange(event: any) {
-        const name: string = event.target.value;
-        let state = this.state;
-        state.name = name;
-        this.setState(state);
     }
 
     render() {
         const title = "Tour of Heroes";
-
         return (
             <div>
                 <h1>{title}</h1>
-                <h2>{this.state.name} details!</h2>
-                <div>
-                    <label>id: </label>{this.state.id}
-                </div>
-                <div>
-                    <label>name: </label>
-                    <input value={this.state.name} onChange={this.nameChange}/>
+                <HeroList heroes={this.props.heroState.heroes} setSelected={this.props.setSelected}/>
+                <div hidden={this.props.heroState.selectedHero.id === 0}>
+                    <HeroDetail selectedHero={this.props.heroState.selectedHero} updateName={this.props.updateName}/>
                 </div>
             </div>
         );
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(TourOfHeroes);
