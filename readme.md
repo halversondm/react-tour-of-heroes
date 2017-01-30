@@ -2,10 +2,9 @@
 
 Using Angular 2's tutorial concepts to build a like application using React and TypeScript.
 
-Follows Part 2 of the tutorial.  In this part I've added Redux for whole app state management.
+Follows Part 3 of the tutorial.  In this part of the tutorial Angular team started refactoring for reuse, testability and readability.  I had done that from the start.  There are no code updates in part 2 over part 3.
+Documentation on Part 3
+https://angular.io/docs/ts/latest/tutorial/toh-pt3.html
 
-Documentation on Part 2
-https://angular.io/docs/ts/latest/tutorial/toh-pt2.html
-
-Live example of Part 2
-https://angular.io/resources/live-examples/toh-2/ts/eplnkr.html
+Live example of Part 3
+https://angular.io/resources/live-examples/toh-3/ts/eplnkr.html
