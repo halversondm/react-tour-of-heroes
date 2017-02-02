@@ -16,6 +16,7 @@ interface StateProps {
 interface DispatchProps {
     updateName(hero: Hero): void;
     setSelected(hero: Hero): void;
+    getHeroes(): void;
 }
 
 type TourOfHeroesProps = StateProps & DispatchProps;
@@ -31,6 +32,10 @@ class TourOfHeroes extends React.Component<TourOfHeroesProps, any> {
 
     constructor() {
         super();
+    }
+
+    componentDidMount() {
+        this.props.getHeroes();
     }
 
     render() {
