@@ -1,21 +1,23 @@
-"use strict"
+"use strict";
 
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const path = require("path");
-const port = 3000;
+const historyApiFallback = require("connect-history-api-fallback");
+const port = 4000;
 
 const app = express();
 app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, "target")));
+app.use(historyApiFallback({verbose: false}));
 
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "target", "index.html"));
 });
 
-app.get("/api/data", (req, res) => {
+app.post("/api/data", (req, res) => {
     const heroes = {
         heroes: [
             {id: 11, name: 'Mr. Nice'},

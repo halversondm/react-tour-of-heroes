@@ -1,13 +1,12 @@
 "use strict";
 
 import * as React from "react";
-import {connect} from "react-redux";
 import {HeroState} from "../reducers/index";
 import {HeroList} from "./HeroList";
-import {HeroDetail} from "./HeroDetail";
-import * as HeroActions from "../actions";
 import Hero from "./Hero";
 import {bindActionCreators} from "redux";
+import * as HeroActions from "../actions";
+import {connect} from "react-redux";
 
 interface StateProps {
     heroState: HeroState
@@ -16,7 +15,9 @@ interface StateProps {
 interface DispatchProps {
     updateName(hero: Hero): void;
     setSelected(hero: Hero): void;
+    removeSelected(): void;
     getHeroes(): void;
+    router: any;
 }
 
 type TourOfHeroesProps = StateProps & DispatchProps;
@@ -28,24 +29,25 @@ function mapStateToProps(state: HeroState) {
 function mapDispatchToProps(dispatch: any) {
     return bindActionCreators(HeroActions, dispatch);
 }
+
 class TourOfHeroes extends React.Component<TourOfHeroesProps, any> {
 
-    constructor() {
-        super();
+    componentDidMount() {
+        this.props.removeSelected();
+        this.goToDetail = this.goToDetail.bind(this);
     }
 
-    componentDidMount() {
-        this.props.getHeroes();
+    goToDetail() {
+        this.props.router.push("/detail");
     }
 
     render() {
-        const title = "Tour of Heroes";
         return (
-            <div>
-                <h1>{title}</h1>
-                <HeroList heroes={this.props.heroState.heroes} setSelected={this.props.setSelected}/>
-                <div hidden={this.props.heroState.selectedHero.id === 0}>
-                    <HeroDetail selectedHero={this.props.heroState.selectedHero} updateName={this.props.updateName}/>
+            <div data-heroes>
+                <HeroList data-heroes heroes={this.props.heroState.heroes} setSelected={this.props.setSelected}/>
+                <div data-heroes hidden={this.props.heroState.selectedHero.id === 0}>
+                    <h2 data-heroes>{this.props.heroState.selectedHero.name.toUpperCase() + " is my hero"}</h2>
+                    <button data-heroes onClick={this.goToDetail}>View Details</button>
                 </div>
             </div>
         );

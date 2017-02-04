@@ -16,6 +16,8 @@ const initialState: HeroState = {
 
 export const heroState = (state = initialState, action: Action) => {
     switch (action.type) {
+        case ActionType.REMOVE_SELECTED:
+            return objectAssign({}, state, {selectedHero: {id: 0, name: ""}});
         case ActionType.GET_HEROES:
             return objectAssign({}, state, {heroes: action.heroes});
         case ActionType.UPDATE_NAME:
@@ -32,3 +34,6 @@ export const heroState = (state = initialState, action: Action) => {
             return state;
     }
 };
+
+
+

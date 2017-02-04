@@ -1,0 +1,95 @@
+[class*='col-'][data-dashboard] {
+    float: left;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+[class*='col-'][data-dashboard]:last-of-type {
+    padding-right: 0;
+}
+
+a[data-dashboard] {
+    text-decoration: none;
+}
+
+*[data-dashboard] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*[data-dashboard]:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*[data-dashboard]:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+h3[data-dashboard] {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+h4[data-dashboard] {
+    position: relative;
+}
+
+.grid[data-dashboard] {
+    margin: 0;
+}
+
+.col-1-4[data-dashboard] {
+    width: 25%;
+}
+
+.module[data-dashboard] {
+    padding: 20px;
+    text-align: center;
+    color: #eee;
+    max-height: 120px;
+    min-width: 120px;
+    background-color: #607D8B;
+    border-radius: 2px;
+}
+
+.module[data-dashboard]:hover {
+    background-color: #EEE;
+    cursor: pointer;
+    color: #607d8b;
+}
+
+.grid-pad[data-dashboard] {
+    padding: 10px 0;
+}
+
+.grid-pad[data-dashboard] > [class*='col-'][data-dashboard]:last-of-type {
+    padding-right: 20px;
+}
+
+@media (max-width: 600px) {
+    .module[data-dashboard] {
+        font-size: 10px;
+        max-height: 75px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .grid[data-dashboard] {
+        margin: 0;
+    }
+
+    .module[data-dashboard] {
+        min-width: 60px;
+    }
+}
+
+/*
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+*/

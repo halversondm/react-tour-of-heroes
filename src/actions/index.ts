@@ -25,22 +25,14 @@ export function setHeroes(heroes: Array<Hero>): Action {
     }
 }
 
-export function getHeroes(): any {
-    return (dispatch: any) => fetch("/api/data")
-        .then((response: any) => response.json())
-        .then((json: any) => dispatch(setHeroes(json.heroes)));
-}
-
-export function setHeroes(heroes: Array<Hero>): Action {
+export function removeSelected(): Action {
     return {
-        type: ActionType.GET_HEROES,
-        hero: null,
-        heroes
+        type: ActionType.REMOVE_SELECTED
     }
 }
 
 export function getHeroes(): any {
-    return (dispatch: any) => fetch("/api/data")
+    return (dispatch: any) => fetch("/api/data", {method: "post"})
         .then((response: any) => response.json())
         .then((json: any) => dispatch(setHeroes(json.heroes)));
 }

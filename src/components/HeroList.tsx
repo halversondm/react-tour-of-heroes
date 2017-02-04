@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Hero from "./Hero";
-import "./HeroList.css";
+import "../styles/HeroList.css";
 
 export interface HeroListProps {
     heroes: Array<Hero>;
@@ -30,13 +30,14 @@ export class HeroList extends React.Component<HeroListProps, HeroListState> {
 
     render() {
         return (
-            <div>
-                <h2>My Heroes</h2>
-                <ul className="heroes">
+            <div data-heroes>
+                <h2 data-heroes>My Heroes</h2>
+                <ul data-heroes className="heroes">
                     {this.props.heroes.map((hero: Hero) => {
-                        return <li key={hero.id} className={this.state.hero.id === hero.id ? "selected" : ""}
+                        return <li data-heroes key={hero.id}
+                                   className={this.state.hero.id === hero.id ? "selected" : ""}
                                    onClick={this.setSelected.bind(this, hero)}><span
-                            className="badge">{hero.id}</span> {hero.name}</li>
+                            data-heroes className="badge">{hero.id}</span> {hero.name}</li>
                     })}
                 </ul>
             </div>
